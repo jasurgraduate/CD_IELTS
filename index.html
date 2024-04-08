@@ -1,124 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CD IELTS Preparation | Writing Task 1, Task 2</title>
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,user-scalable=yes"/>
-    <meta name="description"
-          content="CD IELTS Preparation | Writing Task 1, Task 2"/>
 
-    <link href="css/style.css" rel="stylesheet"/>
-
-     <!-- Add favicon -->
-     <link rel="icon" type="image/ico" href="favicon.ico">
-
-     <style>
-        /* Additional styles for header and footer */
-        header {
-    text-align: center;
-    margin-bottom: 20px;
-    position: fixed; /* Fixed position to keep it at the top */
-    top: 0; /* Align to the top */
-    left: 0; /* Align the left edge of the background to the left */
-    width: 100%; /* Take the full width */
-    background-color: #f9e3c3; /* Background color for better visibility */
-    z-index: 9999; /* Ensure it's above other content */
-    background-position: center; /* Center the background horizontally */
-    background-size: cover; /* Ensure the background covers the entire header */
-}
-    </style>
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- Add favicon -->
+    <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
+
 <body>
 
-   <header>
-    <p><div id="timer">01:00:00</div> 
-    <button id="startBtn">Start</button>
-    <button id="stopBtn">Stop</button>
-    <button id="resetBtn">Reset</button></p>
-    <!-- Move the timer inside the header -->
-</header>
+    <header>
+        <div id="timer">01:00:00</div>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+    </header>
 
-    <style>
-        /* Additional styles for header and footer */
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    <div class="container">
+        <h2 class="input-title">Task 1</h2>
+        <p id="wordCount">Word Count: 0</p>
+        <textarea autofocus="" class="form-control input-area"
+            placeholder="Please start the timer and you may begin writing" rows="20"
+            oninput="onLatinTextChange(this.value)" id="latinTextarea"></textarea>
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
-            background-color: #f9f9f9;
-            font-size: 14px;
-        }
+        <h2 class="input-title">Task 2</h2>
+        <p id="wordCount2">Word Count: 0</p>
+        <textarea autofocus="" class="form-control input-area" placeholder="Task 2. Just give it a go! Good luck!"
+            rows="20" oninput="onLatinTextChange(this.value)" id="latinTextarea2"></textarea>
+    </div>
 
-        footer p {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-<header>
-</header>
+    <footer>
+        <p>&copy; 2019-2024 <a href="https://jasurjacob.blogspot.com">Jasur Anorkulov</a>. All rights reserved.</p>
+    </footer>
 
-    <h1 class="sr-only">CD IELTS Preparation | Writing Task 1, Task 2</h1>
-
-    <div class="row">
-        <title>1 Hour Timer</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    
-        <div class="col-md-6">
-            
-            
-            <h2 class="input-title">Task 1</h2>
-            <p id="wordCount"></p>
-            <textarea
-                    autofocus=""
-                    class="form-control input-area"
-                    placeholder="Please start the timer and you may begin writing"
-                    rows="20"
-                    oninput="onLatinTextChange(this.value)"
-                    id="latinTextarea"
-                    font=""></textarea>
-                    
-        </div>
-
-
-        <div class="col-md-6">
-            
-            
-            <h2 class="input-title">Task 2</h2>
-            <p id="wordCount2"></p>
-            <textarea
-                    autofocus=""
-                    class="form-control input-area"
-                    placeholder="Task 2. Just give it a go! Good luck!"
-                    rows="20"
-                    oninput="onLatinTextChange(this.value)"
-                    id="latinTextarea2"
-                    font=""></textarea>
-            
-        </div>
-
-            </div>
-
-
-        
-
-            <script src="js/timer.js"></script>
-            <script src="js/wordcount1.js"></script>
+    <!-- JavaScript files -->
+    <script src="js/timer.js"></script>
+    <script src="js/wordcount1.js"></script>
     <script src="js/wordcount2.js"></script>
-
-</div>
-<footer>
-    <p>&copy; 2019-2024 <a href="https://jasurjacob.blogspot.com">
-   Jasur Anorkulov</a>. All rights reserved.</p>
-
-</footer>
 </body>
+
 </html>
