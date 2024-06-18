@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CD IELTS Preparation | Writing Task 1, Task 2</title>
 
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/stylenew.css" rel="stylesheet" />
     <!-- Add favicon -->
     <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
@@ -21,26 +21,57 @@
     </header>
 
     <div class="container">
-        <h2 class="input-title">Task 1</h2>
-        <p id="wordCount">Word Count: 0</p>
-        <textarea autofocus="" class="form-control input-area"
-            placeholder="Please start the timer and you may begin writing" rows="20"
-            oninput="onLatinTextChange(this.value)" id="latinTextarea"></textarea>
+        <div class="left">
+            <h2>Image 1 (Drag n drop / Double click / Ctrl+V)</h2>
+            <div id="imageArea1" class="image-area">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <button class="button" id="replaceBtn1">Add an image</button>
+                <div id="imageContainer">Double click or just insert image using Ctrl+V</div>
+            </div>
+            
+        </div>
 
-        <h2 class="input-title">Task 2</h2>
-        <p id="wordCount2">Word Count: 0</p>
-        <textarea autofocus="" class="form-control input-area" placeholder="Task 2. Just give it a go! Good luck!"
-            rows="20" oninput="onLatinTextChange(this.value)" id="latinTextarea2"></textarea>
+        <div class="separator"></div>
+
+        <div class="right">
+            <div class="input-title">Task 1</div>
+            <p id="wordCount">Word Count: 0</p>
+            <textarea autofocus="" class="form-control input-area"
+                placeholder="Please start the timer and you may begin writing" rows="20"
+                oninput="onLatinTextChange(this.value)" id="latinTextarea"></textarea>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <h2>Image 2 (Drag n drop / Double click / Ctrl+V)</h2>
+            <div id="imageArea2" class="image-area">
+                <input type="file" id="imageUpload2" accept="image/*" style="display: none;">
+                <button class="button" id="replaceBtn2">Add an image</button>
+                <div id="imageContainer2">Double click or just insert image using Ctrl+V</div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="right">
+            <div class="input-title">Task 2</div>
+            <p id="wordCount2">Word Count: 0</p>
+            <textarea autofocus="" class="form-control input-area" placeholder="Task 2. Just give it a go! Good luck!"
+                rows="20" oninput="onLatinTextChange(this.value)" id="latinTextarea2"></textarea>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2019-2024 <a href="https://jasurjacob.blogspot.com">Jasur Anorkulov</a> | All rights reserved.</p>
+        <p>&copy; 2019-<span id="current-year"></span> <a href="https://jasurjacob.blogspot.com">jasurlive.uz</a> | All
+            rights reserved.</p>
     </footer>
 
     <!-- JavaScript files -->
     <script src="js/timer.js"></script>
     <script src="js/wordcount1.js"></script>
     <script src="js/wordcount2.js"></script>
+    <script src="js/image.js"></script>
 </body>
 
 </html>
