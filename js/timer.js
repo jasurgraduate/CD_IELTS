@@ -1,6 +1,7 @@
 let interval;
 let timerRunning = false;
 let remainingTime = 3600; // 1 hour in seconds
+let endTime;
 
 const timerDisplay = document.getElementById('timer');
 const startBtn = document.getElementById('startBtn');
@@ -8,7 +9,9 @@ const stopBtn = document.getElementById('stopBtn');
 const resetBtn = document.getElementById('resetBtn');
 
 function startTimer() {
-    interval = setInterval(updateTimer, 1000);
+    const now = Date.now();
+    endTime = now + remainingTime * 1000; // set end time as current time plus duration
+    interval = setInterval(updateTimer, 1000); // Update every second
     timerRunning = true;
     startBtn.disabled = true;
     stopBtn.disabled = false;
@@ -26,29 +29,25 @@ function stopTimer() {
 function resetTimer() {
     stopTimer();
     remainingTime = 3600;
-    timerDisplay.textContent = '01:00:00';
-    document.getElementById('latinTextarea').value = ''; // Clear textarea for Task 1
-    document.getElementById('latinTextarea2').value = ''; // Clear textarea for Task 2
-    document.getElementById("wordCount").textContent = "Word Count: 0"; // Reset Word Count for Task 1
-    document.getElementById("wordCount2").textContent = "Word Count: 0"; // Reset Word Count for Task 2
+    updateTimerDisplay(remainingTime);
 }
 
 function updateTimer() {
-    remainingTime--;
+    const now = Date.now();
+    remainingTime = Math.round((endTime - now) / 1000); // calculate remaining time based on end time and current time
     if (remainingTime < 0) {
         stopTimer();
-        timerDisplay.textContent = '00:00:00';
+        updateTimerDisplay(0); // Ensure timer display shows 00:00:00 when time is up
     } else {
-        const formattedTime = formatTime(remainingTime);
-        timerDisplay.textContent = formattedTime;
+        updateTimerDisplay(remainingTime); // Update timer display with remaining time
     }
 }
 
-function formatTime(time) {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
-    return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+function updateTimerDisplay(timeInSeconds) {
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
+    timerDisplay.textContent = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
 }
 
 function padZero(number) {
@@ -70,3 +69,9 @@ stopBtn.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     resetTimer();
 });
+
+// Ensure initial timer display is set correctly
+updateTimerDisplay(remainingTime);
+
+// Current Year
+document.getElementById('current-year').textContent = new Date().getFullYear();
