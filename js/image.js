@@ -1,4 +1,3 @@
-// Function to handle image operations for a specific image area
 function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageAreaId) {
     let currentScale = 1;
     let currentContextMenu = null;
@@ -7,14 +6,16 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
         image.style.transform = `scale(${scale})`;
     }
 
-    function displayImage(imageContainer, src, alt) {
+    function displayImage(imageContainer, src, alt, imageArea) {
         imageContainer.innerHTML = ''; // Clear the container to show only one image at a time
         const img = document.createElement('img');
         img.src = src;
         img.alt = alt;
-        img.style.transform = `scale(${currentScale})`;
+        img.style.width = '100%'; // Ensure the image fits horizontally
         imageContainer.appendChild(img);
         attachImageEventHandlers(img, imageContainer);
+        // Hide the "Add an image" button
+        document.getElementById(replaceBtnId).style.display = 'none';
     }
 
     function attachImageEventHandlers(img, imageContainer) {
@@ -50,7 +51,7 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
         contextMenu.style.backgroundColor = '#fff';
         contextMenu.style.border = '1px solid #ccc';
         contextMenu.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.3)';
-        contextMenu.style.zIndex = 0;
+        contextMenu.style.zIndex = 1000;
 
         const options = ['Replace', 'Remove', 'Zoom In', 'Zoom Out'];
         options.forEach(option => {
@@ -69,6 +70,12 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
                         imageContainer.innerHTML = '';
                         currentScale = 1;
                         document.getElementById(imageUploadId).value = ''; // Reset the file input
+                        // Add text back after image is removed
+                        const placeholderText = document.createElement('div');
+                        placeholderText.innerText = 'No image selected. Double click or just insert image using Ctrl+V';
+                        imageContainer.appendChild(placeholderText);
+                        // Show the "Add an image" button again
+                        document.getElementById(replaceBtnId).style.display = 'block';
                         break;
                     case 'Zoom In':
                         currentScale += 0.1;
@@ -114,7 +121,7 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    displayImage(imageContainer, e.target.result, 'Dropped Image');
+                    displayImage(imageContainer, e.target.result, 'Dropped Image', imageArea);
                 };
                 reader.readAsDataURL(file);
             }
@@ -127,7 +134,7 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
                     const file = item.getAsFile();
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        displayImage(imageContainer, e.target.result, 'Pasted Image');
+                        displayImage(imageContainer, e.target.result, 'Pasted Image', imageArea);
                     };
                     reader.readAsDataURL(file);
                 }
@@ -165,7 +172,7 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                displayImage(imageContainer, e.target.result, 'Uploaded Image');
+                displayImage(imageContainer, e.target.result, 'Uploaded Image', imageArea);
             };
             reader.readAsDataURL(file);
         }
@@ -185,11 +192,16 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                displayImage(imageContainer, e.target.result, 'Uploaded Image');
+                displayImage(imageContainer, e.target.result, 'Uploaded Image', imageArea);
             };
             reader.readAsDataURL(file);
         }
     });
+
+    // Add initial placeholder text
+    const placeholderText = document.createElement('div');
+    placeholderText.innerText = 'No image selected. Double click or just insert image using Ctrl+V';
+    imageContainer.appendChild(placeholderText);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
