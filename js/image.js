@@ -68,6 +68,7 @@ function setupImageArea(imageUploadId, replaceBtnId, imageContainerId, imageArea
                     case 'Remove':
                         imageContainer.innerHTML = '';
                         currentScale = 1;
+                        document.getElementById(imageUploadId).value = ''; // Reset the file input
                         break;
                     case 'Zoom In':
                         currentScale += 0.1;
